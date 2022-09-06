@@ -7,9 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.task5.CatAdapter
+import com.example.task5.CatClickListener
 import com.example.task5.CatViewModel
 import com.example.task5.databinding.FragmentListOfCatsBinding
 
@@ -31,7 +33,8 @@ class ListOfCatsFragment : Fragment() {
         _binding = FragmentListOfCatsBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        itemAdapter = CatAdapter()
+        itemAdapter = CatAdapter(CatClickListener { cat -> findNavController().navigate(ListOfCatsFragmentDirections
+            .actionListOfCatsFragmentToCatFragment(cat)) })
         recycler = binding.recyclerView
         recycler.apply {
             adapter = itemAdapter

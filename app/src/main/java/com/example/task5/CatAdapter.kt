@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.task5.data.Cat
 import com.example.task5.databinding.RecyclerviewItemBinding
 
-class CatAdapter : RecyclerView.Adapter<CatViewHolder>(){
+class CatAdapter(val catClickListener: CatClickListener) : RecyclerView.Adapter<CatViewHolder>() {
 
     private val catItems = mutableListOf<Cat>()
 
@@ -20,6 +20,7 @@ class CatAdapter : RecyclerView.Adapter<CatViewHolder>(){
     override fun onBindViewHolder(holder: CatViewHolder, position: Int) {
         val listItem = catItems[position]
         holder.bind(listItem.id, listItem.imageUrl)
+        holder.itemView.setOnClickListener { catClickListener.onClick(listItem) }
     }
 
     override fun getItemCount(): Int {
