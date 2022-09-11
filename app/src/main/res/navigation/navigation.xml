@@ -12,7 +12,11 @@
         tools:layout="@layout/fragment_list_of_cats" >
         <action
             android:id="@+id/action_listOfCatsFragment_to_catFragment"
-            app:destination="@id/catFragment" />
+            app:destination="@id/catFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/catFragment"
@@ -21,7 +25,9 @@
         tools:layout="@layout/fragment_cat" >
         <action
             android:id="@+id/action_catFragment_to_listOfCatsFragment"
-            app:destination="@id/listOfCatsFragment" />
+            app:destination="@id/listOfCatsFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right" />
         <argument
             android:name="cat"
             app:argType="com.example.task5.data.Cat"

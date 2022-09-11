@@ -25,19 +25,7 @@ class CatViewModel constructor(private val catApiImpl: CatApiImpl) : ViewModel()
         PagingConfig(pageSize = 10, initialLoadSize = 10)
     ) {
         CatPagingSource(catApiImpl)
-    }.flow
-        .cachedIn(viewModelScope)
-
-//    private val _items = MutableLiveData<PagingData<Cat>>()
-//    val items: LiveData<PagingData<Cat>>
-//    get() = _items
-//
-//    init {
-//        viewModelScope.launch {
-//            val pager: Pager<Int, Cat> = Pager<Int, Cat>(PagingConfig(pageSize = 5), pagingSourceFactory = {CatPagingSource(catApiImpl)})
-//            items.cachedIn(items.value = pager, viewModelScope)
-//        }
-//    }
+    }.flow.cachedIn(viewModelScope)
 
 
 

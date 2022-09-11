@@ -13,7 +13,11 @@ import com.example.task5.databinding.RecyclerviewItemBinding
 class CatPagingAdapter(val catClickListener: CatClickListener) : PagingDataAdapter<Cat, CatPagingViewHolder>(CatDiffItemCallback) {
 
     override fun onBindViewHolder(holder: CatPagingViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        val cat: Cat? = getItem(position)
+        holder.bind(cat)
+        if (cat != null) {
+            holder.itemView.setOnClickListener { catClickListener.onClick(cat) }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CatPagingViewHolder {

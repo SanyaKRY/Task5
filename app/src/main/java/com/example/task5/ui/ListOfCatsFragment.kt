@@ -19,11 +19,9 @@ import kotlinx.coroutines.flow.collectLatest
 class ListOfCatsFragment : Fragment() {
 
     private lateinit var itemPagingAdapter: CatPagingAdapter
-//    private val catViewModel by viewModels<CatViewModel>()
     private val catViewModel : CatViewModel by viewModels {
     CatViewModelFactory(CatApiImpl)
     }
-    private lateinit var recycler: RecyclerView
 
     private var _binding: FragmentListOfCatsBinding? = null
     // This property is only valid between onCreateView and
@@ -45,17 +43,11 @@ class ListOfCatsFragment : Fragment() {
             layoutManager = LinearLayoutManager(context)
         }
 
-//        catViewModel.cats.collectLatest(itemPagingAdapter::submitData)
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
             catViewModel.cats.collectLatest { pagingData ->
                 itemPagingAdapter.submitData(pagingData)
             }
         }
-//        catViewModel.items.observe(viewLifecycleOwner, Observer {
-//            it ?: return@Observer
-//            itemPagingAdapter.submitData(it)
-//        })
-
         return view
     }
 
