@@ -6,10 +6,11 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.task5.CatClickListener
 import com.example.task5.data.Cat
 import com.example.task5.databinding.RecyclerviewItemBinding
 
-class CatPagingAdapter : PagingDataAdapter<Cat, CatPagingViewHolder>(CatDiffItemCallback) {
+class CatPagingAdapter(val catClickListener: CatClickListener) : PagingDataAdapter<Cat, CatPagingViewHolder>(CatDiffItemCallback) {
 
     override fun onBindViewHolder(holder: CatPagingViewHolder, position: Int) {
         holder.bind(getItem(position))
